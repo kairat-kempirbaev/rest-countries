@@ -43,6 +43,11 @@ function App(): JSX.Element {
     if (search?.length) {
       flags = items.filter(item=>(item.name.common.toLowerCase().includes(search.toLowerCase())))
     }
+
+    if(region?.length ){
+      flags = flags.filter(item=>(item.region.toLowerCase().includes(region.toLowerCase())))
+    }
+
     return flags.map((item, index) =>
         <CountryComponent  name={item.name} flags={item.flags} capital={item.capital} region={item.region} population={item.population}></CountryComponent>
       )

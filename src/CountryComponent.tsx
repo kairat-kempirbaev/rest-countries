@@ -9,7 +9,7 @@ const CountryComponents: FC<Flags> = (props): JSX.Element => {
     const population: string = props.population.toString().match(regEx).join(",");
 
     return (
-        <div key={props.key} className='flex flex-col w-[220px]  bg-white text-black'>
+        <div className='flex flex-col w-[220px]  bg-white text-black'>
             <img src={props.flags[1]} className="h-[125px]" />
             <div className='p-4 pb-6 flex flex-col gap-4 text-left'>
                 <h2 className="font-bold text-[1rem] ">{props.name.common}</h2>
