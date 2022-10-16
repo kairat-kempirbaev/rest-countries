@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "src/MapTypes",
+      "node_modules/@types"
+    ]
+  },
+  "include": ["vite.config.ts"]
+}
