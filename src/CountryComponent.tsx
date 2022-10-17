@@ -16,7 +16,7 @@ const CountryComponents: FC<CountryComponentProps> = (props): JSX.Element => {
                 <div className='font-thin text-[0.8rem] '>
                     <p><span>Population:</span>{population} <br /></p>
                     <p><span>Region:</span>{country.region} </p>
-                    {capital}
+                    <p><span>Capital:</span>{capital}</p>
                 </div>
             </div>
         </div>
