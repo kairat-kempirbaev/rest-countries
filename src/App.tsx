@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import Flags from "./MapTypes";
+import Details from "./MapTypes";
 import {
   Routes,
   Route
@@ -11,7 +11,7 @@ import DetailsComponent from './DetailsComponent';
 const URL: string = "https://restcountries.com/v3/all";
 
 function App(): JSX.Element {
-  const [items, setItems] = useState<Flags[]>([]);
+  const [items, setItems] = useState<Details[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [error, setError] = useState<{ message: string, [key: string]: any } | null>(null);
 
@@ -57,7 +57,7 @@ function App(): JSX.Element {
         <main>
           <Routes>
             <Route  index path="/" element={<AllCountries items={items}/>} />
-            <Route  path="/country/:id" element={<DetailsComponent items={items}/>}/>
+            <Route  path="/country/:id" element={<DetailsComponent/>}/>
           </Routes>
         </main>
       </div>

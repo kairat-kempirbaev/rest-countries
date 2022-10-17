@@ -1,15 +1,16 @@
-export default interface Flags {
-    name: {common:string},
+export  interface Flags {
+    name: {nativeName:{eng:{official:string}},common:string},
     flags: [string, string],
     capital: [string],
     region: string,
     population: number,
 }
 
-export interface Details extends Flags{
-    nativeName:string,
+export default interface Details extends Flags{
     subRegion: string,
-    tld:string,
     currencies:string,
     languages:Array<string>,
+    tld:Array<string>,
+    borders:Array<string>,
+    cca3:string
 }

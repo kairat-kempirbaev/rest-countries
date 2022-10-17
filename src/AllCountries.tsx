@@ -26,7 +26,7 @@ const AllCountries: FunctionComponent<AllCountriesProps> = (props): JSX.Element 
 
         return flags.map((item, index) =>
             <Link key={index} to={"/country/" + item.name.common} state={{ country: item,countries:items }}>
-                <CountryComponent  name={item.name} flags={item.flags} capital={item.capital} region={item.region} population={item.population}></CountryComponent>
+                <CountryComponent  country={item}></CountryComponent>
             </Link>
         )
     }

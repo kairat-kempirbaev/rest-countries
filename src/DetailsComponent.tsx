@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Flags from "./MapTypes"
+import Details from "./MapTypes"
 import { Link, useLocation } from 'react-router-dom';
 import formatSpec from "./formatSpec";
 
@@ -11,9 +11,10 @@ const style = {
     backgroundPosition: "15% 50% ",
 }
 
-const DetailsComponent: FunctionComponent = (): JSX.Element => {
-    const country: Flags = useLocation().state.country;
-    const items: Array<Flags> = useLocation().state.countries;
+
+const DetailsComponent: FunctionComponent= (): JSX.Element => {
+    const country: Details = useLocation().state.country;
+    const items: Array<Details> = useLocation().state.countries;
     const { capital, population } = formatSpec(country);
 
     return (
@@ -33,7 +34,7 @@ const DetailsComponent: FunctionComponent = (): JSX.Element => {
                         }
                         <p><span className='font-bold text-[1.2rem]'>Population:</span>{population} <br /></p>
                         <p><span className='font-bold text-[1.2rem]'>Region:</span>{country.region} </p>
-                        <p><span className='font-bold text-[1.2rem]'>Sub Region:</span>{country.subregion} </p>
+                        <p><span className='font-bold text-[1.2rem]'>Sub Region:</span>{country.subRegion} </p>
                         {capital}
                     </div>
                     <div>
