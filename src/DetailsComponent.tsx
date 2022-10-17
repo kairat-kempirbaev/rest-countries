@@ -25,43 +25,42 @@ const DetailsComponent: FunctionComponent = (): JSX.Element => {
                 <button style={{ ...style, ...shadowStyle }} className="py-3 px-5 pl-12 rounded-lg ">Back</button>
             </Link>
 
-            <main className="flex flex-col md:flex-row gap-20  ">
-                <img src={country.flags[1]} className="h-[300px] w-[450px]" />
-                <div className=' pt-6 flex md:flex-col flex-row gap-4 text-left'>
+            <main className="flex flex-col flex-wrap md:flex-row gap-20 items-center ">
+                <img src={country.flags[1]} className="h-[200px] w-[350px]  md:h-[300px] md:w-[450px]" />
+                <div className='pt-1 md:pt-6 flex flex-col  gap-4 text-left'>
                     <h2 className="font-bold text-[2rem] ">{country.name.common}</h2>
-                    <section>
+                    <section className="flex flex-col md:flex-row gap-5 md:gap-16 flex-wrap">
                         <div>
-                            {country.name.nativeName.eng != null &&
-                                <p><span className='font-bold text-[1.2rem]'>Native Name:</span>{(country.name.nativeName.eng.official)} <br /></p>
+                            {country.name.nativeName &&
+                                <p><span className='font-bold text-[1.2rem]'>Native Name: </span>{(Object.entries(country.name.nativeName)[0][1].official)} <br /></p>
                             }
-                            <p><span className='font-bold text-[1.2rem]'>Population:</span>{population} <br /></p>
-                            <p><span className='font-bold text-[1.2rem]'>Region:</span>{country.region} </p>
-                            <p><span className='font-bold text-[1.2rem]'>Sub Region:</span>{country.subregion} </p>
-                            <p><span className='font-bold text-[1.2rem]'>Capital:</span>{capital}</p>
+                            <p><span className='font-bold text-[1.2rem]'>Population: </span>{population} <br /></p>
+                            <p><span className='font-bold text-[1.2rem]'>Region: </span>{country.region} </p>
+                            <p><span className='font-bold text-[1.2rem]'>Sub Region: </span>{country.subregion} </p>
+                            <p><span className='font-bold text-[1.2rem]'>Capital: </span>{capital}</p>
                         </div>
                         <div>
-                            <p><span className='font-bold text-[1.2rem]'>Top Level Domain:</span>{country.tld[0]} </p>
-                            <p><span className='font-bold text-[1.2rem]'>Currencies:</span>{Object.keys(country.currencies).join(", ")} </p>
-                            <p><span className='font-bold text-[1.2rem]'>Languages:</span>{Object.values(country.languages).join(", ")} </p>
+                            <p><span className='font-bold text-[1.2rem]'>Top Level Domain: </span>{country.tld[0]} </p>
+                            <p><span className='font-bold text-[1.2rem]'>Currencies: </span>{Object.keys(country.currencies).join(", ")} </p>
+                            <p><span className='font-bold text-[1.2rem]'>Languages: </span>{Object.values(country.languages).join(", ")} </p>
                         </div>
                     </section>
-                    <div>
-                        <p><span className='font-bold text-[1.2rem]'>Border Countries:</span>
-                            <ul className="flex gap-4">
-                                {("borders" in country &&
-                                    items.filter(x => x.borders && x.borders.includes(country.cca3)).map(x =>
-                                        <li key={x.name.common} style={shadowStyle} className="p-3 bg-[red] rounded-lg">
-                                            <Link to={"/country/" + x.name.common} state={{ country: x, countries: items }}>
-                                                <span>{x.name.common}</span>
-                                            </Link>
-                                        </li>
-                                    )
-                                )}
-                                {(!("borders" in country) &&
-                                    <span>None</span>
-                                )}
-                            </ul>
-                        </p>
+                    <div className="flex flex-col flex-wrap md:flex-row md:items-center gap-4">
+                        <span className='font-bold text-[1.2rem]'>Border Countries: </span>
+                        <ul className="flex gap-4 flex-wrap">
+                            {("borders" in country &&
+                                items.filter(x => x.borders && x.borders.includes(country.cca3)).map(x =>
+                                    <li key={x.name.common} style={shadowStyle} className="p-3 bg-[red] rounded-lg">
+                                        <Link to={"/country/" + x.name.common} state={{ country: x, countries: items }}>
+                                            <span>{x.name.common}</span>
+                                        </Link>
+                                    </li>
+                                )
+                            )}
+                            {(!("borders" in country) &&
+                                <span>None</span>
+                            )}
+                        </ul>
                     </div>
                 </div>
             </main>

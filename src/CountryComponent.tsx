@@ -14,9 +14,9 @@ const CountryComponents: FC<CountryComponentProps> = (props): JSX.Element => {
             <div className='p-4 pb-6 flex flex-col gap-4 text-left'>
                 <h2 className="font-bold text-[1rem] ">{country.name.common}</h2>
                 <div className='font-thin text-[0.8rem] '>
-                    <p><span>Population:</span>{population} <br /></p>
-                    <p><span>Region:</span>{country.region} </p>
-                    <p><span>Capital:</span>{capital}</p>
+                    <p><span>Population: </span>{population} <br /></p>
+                    <p><span>Region: </span>{country.region} </p>
+                    <p><span>Capital: </span>{capital}</p>
                 </div>
             </div>
         </div>
