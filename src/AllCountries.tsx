@@ -8,7 +8,7 @@ interface AllCountriesProps {
     items: Array<Flags>,
 }
 
-const AllCountries: FunctionComponent<AllCountriesProps> = (props) => {
+const AllCountries: FunctionComponent<AllCountriesProps> = (props): JSX.Element  => {
     const items = props.items;
 
     const [search, setSearch] = useState<string>("");
@@ -16,27 +16,27 @@ const AllCountries: FunctionComponent<AllCountriesProps> = (props) => {
 
     function displayRecords() {
         let flags: Flags[] = props.items;
-        if (search?.length) {
+        if (search!.length) {
             flags = items.filter(item => (item.name.common.toLowerCase().includes(search.toLowerCase())))
         }
 
-        if (region?.length) {
+        if (region!.length) {
             flags = flags.filter(item => (item.region.toLowerCase().includes(region.toLowerCase())))
         }
 
         return flags.map((item, index) =>
-            <Link to={"/country/" + item.name.common}>
-                <CountryComponent key={index} name={item.name} flags={item.flags} capital={item.capital} region={item.region} population={item.population}></CountryComponent>
+            <Link key={index} to={"/country/" + item.name.common} state={{ country: item,countries:items }}>
+                <CountryComponent  name={item.name} flags={item.flags} capital={item.capital} region={item.region} population={item.population}></CountryComponent>
             </Link>
         )
     }
 
     return <div>
-                <InputComponent search={search} setSearch={setSearch} setRegion={setRegion} ></InputComponent>
-                <div className='flex flex-wrap gap-3 bg-vlg'>
-                    {displayRecords()}
-                </div>
-            </div>;
+        <InputComponent search={search} setSearch={setSearch} setRegion={setRegion} ></InputComponent>
+        <div className='flex flex-wrap justify-around gap-20 bg-vlg md:mt-20 md:mx-16'>
+            {displayRecords()}
+        </div>
+    </div>;
 }
 
 export default AllCountries;
