@@ -7,7 +7,7 @@ export  interface Flags {
 }
 
 export default interface Details extends Flags{
-    subRegion: string,
+    subregion: string,
     currencies:string,
     languages:Array<string>,
     tld:Array<string>,

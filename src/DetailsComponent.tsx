@@ -34,7 +34,7 @@ const DetailsComponent: FunctionComponent= (): JSX.Element => {
                         }
                         <p><span className='font-bold text-[1.2rem]'>Population:</span>{population} <br /></p>
                         <p><span className='font-bold text-[1.2rem]'>Region:</span>{country.region} </p>
-                        <p><span className='font-bold text-[1.2rem]'>Sub Region:</span>{country.subRegion} </p>
+                        <p><span className='font-bold text-[1.2rem]'>Sub Region:</span>{country.subregion} </p>
                         {capital}
                     </div>
                     <div>
