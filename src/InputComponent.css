@@ -1,15 +1,15 @@
-label:hover{
+.display-input-filter label:hover{
     text-decoration:underline;
     cursor:pointer;
 }
 
-button {
+.display-input-filter  button {
     background-image: url("/chevron_down.svg") !important;
     background-repeat: no-repeat;
     background-position: 90% 55%; 
 }
 
-input{
+.display-input-filter  input{
     background-image: url("/search.svg") !important;
     background-repeat: no-repeat;
     background-position: 5% 55%; 

@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Flags from "./MapTypes";
-import CountryComponent from "./CountryComponent";
-import InputComponent from "./InputComponent"
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+import AllCountries from './AllCountries';
+import DetailsComponent from './DetailsComponent';
 
 const URL: string = "https://restcountries.com/v3/all";
-
 
 function App(): JSX.Element {
   const [items, setItems] = useState<Flags[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [error, setError] = useState<{ message: string, [key: string]: any } | null>(null);
 
-  const [search, setSearch] = useState<string|null>(null);
-  const [region, setRegion] = useState<string|null>(null);
   useEffect(() => {
     if (localStorage.getItem("items") === null) {
       fetch(URL)
@@ -38,21 +39,6 @@ function App(): JSX.Element {
     }
   }, [])
 
-  function displayRecords() {
-    let flags:Flags[] = items;
-    if (search?.length) {
-      flags = items.filter(item=>(item.name.common.toLowerCase().includes(search.toLowerCase())))
-    }
-
-    if(region?.length ){
-      flags = flags.filter(item=>(item.region.toLowerCase().includes(region.toLowerCase())))
-    }
-
-    return flags.map((item, index) =>
-        <CountryComponent  name={item.name} flags={item.flags} capital={item.capital} region={item.region} population={item.population}></CountryComponent>
-      )
-  }
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -68,9 +54,11 @@ function App(): JSX.Element {
             <label htmlFor="dark"><img src="/moon.svg" alt="" width='20px' height='20px' className='inline' /> Dark Mode</label>
           </div>
         </header>
-        <InputComponent setRegion={setRegion} search={search} setSearch={setSearch}></InputComponent>
-        <main className='flex flex-wrap gap-3 bg-vlg'>
-          {displayRecords()}
+        <main>
+          <Routes>
+            <Route  index path="/" element={<AllCountries items={items}/>} />
+            <Route  path="/country/:id" element={<DetailsComponent items={items}/>}/>
+          </Routes>
         </main>
       </div>
     )

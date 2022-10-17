@@ -15,7 +15,7 @@ export default function InputComponent(props:any): JSX.Element {
     }
 
     return (
-        <div className='flex justify-around mb-4'>
+        <div className='display-input-filter flex justify-around mb-4'>
             <input type="text" value={props.search} onChange={(e) => props.setSearch(e.target.value)} placeholder='Search for a country...' className='border-[1px] p-3 pl-12 w-[400px] bg-wht   rounded-lg' />
             <div className='flex flex-col w-[180px]'>
                 <button className='border-[1px] p-4 text-left bg-white rounded-xl cursor-pointer' onClick={incDisplay}> Filter by Region </button>

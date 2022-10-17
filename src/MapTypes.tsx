@@ -1,4 +1,4 @@
-interface Flags {
+export default interface Flags {
     name: {common:string},
     flags: [string, string],
     capital: [string],
@@ -6,4 +6,10 @@ interface Flags {
     population: number,
 }
 
-export default Flags;
+export interface Details extends Flags{
+    nativeName:string,
+    subRegion: string,
+    tld:string,
+    currencies:string,
+    languages:Array<string>,
+}
