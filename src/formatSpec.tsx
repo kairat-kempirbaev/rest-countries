@@ -6,3 +6,5 @@ export default function formatSpec(props:Flags) {
     const population: string = props.population?.toString().match(regEx)!.join(",");
     return {capital,population};
 }
+
+export const darkClasses = (dark:boolean) => (dark ? " bg-db  text-white " : " bg-white text-black ");

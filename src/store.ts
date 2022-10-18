@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import darkReducer from './darkSlice'
+import itemsReducer from './itemsSlice'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    dark: darkReducer,
+    items:itemsReducer
+  },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -1,21 +1,22 @@
 import { FunctionComponent, useState } from "react";
-import Flags from "./MapTypes";
+import Details from "./MapTypes";
 import CountryComponent from "./CountryComponent";
 import { Link } from "react-router-dom";
 import InputComponent from "./InputComponent";
 
-interface AllCountriesProps {
-    items: Array<Flags>,
-}
+import { selectDark } from "./darkSlice"
+import { selectItems } from "./itemsSlice"
+import { useSelector } from "react-redux";
 
-const AllCountries: FunctionComponent<AllCountriesProps> = (props): JSX.Element  => {
-    const items = props.items;
+const AllCountries: FunctionComponent = (): JSX.Element => {
+    const items = useSelector(selectItems);
+    const dark = useSelector(selectDark);
 
     const [search, setSearch] = useState<string>("");
     const [region, setRegion] = useState<string>("");
 
     function displayRecords() {
-        let flags: Flags[] = props.items;
+        let flags: Details[] = items;
         if (search!.length) {
             flags = items.filter(item => (item.name.common.toLowerCase().includes(search.toLowerCase())))
         }
@@ -25,15 +26,15 @@ const AllCountries: FunctionComponent<AllCountriesProps> = (props): JSX.Element 
         }
 
         return flags.map((item, index) =>
-            <Link key={index} to={"/country/" + item.name.common} state={{ country: item,countries:items }}>
-                <CountryComponent  country={item}></CountryComponent>
+            <Link key={index} to={"/country/" + item.name.common} state={{ country: item, countries: items }}>
+                <CountryComponent country={item} ></CountryComponent>
             </Link>
         )
     }
 
-    return <div>
-        <InputComponent search={search} setSearch={setSearch} setRegion={setRegion} ></InputComponent>
-        <div className='flex flex-wrap justify-around gap-20 bg-vlg md:mt-20 md:mx-16'>
+    return <div className={"py-10 " + (dark ? "bg-vdb" : "bg-vlg")}>
+        <InputComponent search={search} setSearch={setSearch} setRegion={setRegion}></InputComponent>
+        <div className={'flex flex-wrap justify-around py-10 gap-20  md:px-16 '}>
             {displayRecords()}
         </div>
     </div>;
